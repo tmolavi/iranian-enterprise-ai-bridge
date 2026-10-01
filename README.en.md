@@ -72,8 +72,8 @@ Deterministic engines calculate authoritative numbers; AI understands intent, se
 
 ### 1. Installation
 ```bash
-git clone https://github.com/iranian-enterprise-ai-bridge/ieab.git
-cd ieab
+git clone https://github.com/tmolavi/iranian-enterprise-ai-bridge.git
+cd iranian-enterprise-ai-bridge
 npm install
 ```
 

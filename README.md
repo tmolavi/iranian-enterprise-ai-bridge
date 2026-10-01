@@ -83,8 +83,8 @@
 
 ### ۲. کلون و نصب وابستگی‌ها
 ```bash
-git clone https://github.com/iranian-enterprise-ai-bridge/ieab.git
-cd ieab
+git clone https://github.com/tmolavi/iranian-enterprise-ai-bridge.git
+cd iranian-enterprise-ai-bridge
 npm install
 ```
 
