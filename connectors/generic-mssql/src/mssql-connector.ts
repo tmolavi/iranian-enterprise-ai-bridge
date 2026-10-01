@@ -138,10 +138,13 @@ export class GenericMSSQLConnector extends BaseConnector {
     return {
       entity: options.entity,
       records: mockDbRecords,
+      recordsCount: mockDbRecords.length,
       batchSize: mockDbRecords.length,
       hasMore: false,
-      nextCursorValue: 1002,
-      durationMs: Date.now() - t0
+      nextCursor: 1002,
+      extractedAt: new Date().toISOString(),
+      durationMs: Date.now() - t0,
+      isFixture: true
     };
   }
 
@@ -150,15 +153,15 @@ export class GenericMSSQLConnector extends BaseConnector {
   }
 
   public async healthCheck(): Promise<HealthCheckResult> {
+    const connTest = await this.testConnection();
     return {
-      isHealthy: true,
-      statusMessageFa: 'اتصال به پایگاه داده SQL Server با موفقیت برقرار است.',
-      lastSuccessfulSync: new Date().toISOString(),
-      pendingLagRecords: 0,
-      metrics: {
-        avgQueryLatencyMs: 12,
-        activeConnections: 1
-      }
+      connectorId: this.manifest.connectorId,
+      status: connTest.success ? 'HEALTHY' : 'NOT_CONFIGURED',
+      isHealthy: connTest.success,
+      checkedAt: new Date().toISOString(),
+      connection: connTest,
+      lastSyncTimestamp: new Date().toISOString(),
+      reconciliationStatus: 'RECONCILED'
     };
   }
 

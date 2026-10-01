@@ -80,7 +80,7 @@ export class ConnectorTestHarness {
     const t4 = Date.now();
     try {
       const health = await connector.healthCheck();
-      assert.ok(typeof health.isHealthy === 'boolean', 'Health status must be boolean');
+      assert.ok(typeof health.status === 'string', 'Health status must be string enum');
       checks.push({ name: 'Health Check Verification', passed: true, durationMs: Date.now() - t4 });
     } catch (e: any) {
       checks.push({ name: 'Health Check Verification', passed: false, durationMs: Date.now() - t4, error: e.message });

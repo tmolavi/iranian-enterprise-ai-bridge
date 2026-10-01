@@ -48,7 +48,7 @@ export interface SchemaEntity {
 }
 
 export interface SchemaDiscoveryResult {
-  connectorId: string;
+  connectorId?: string;
   discoveredAt: string;
   entities: SchemaEntity[];
   error?: string;
@@ -57,6 +57,7 @@ export interface SchemaDiscoveryResult {
 export interface ExtractionOptions {
   entity: string;
   batchSize?: number;
+  offset?: number;
   fields?: string[];
   filterCriteria?: Record<string, unknown>;
 }
@@ -69,19 +70,26 @@ export interface IncrementalExtractionOptions extends ExtractionOptions {
 export interface ExtractionBatchResult {
   entity: string;
   records: Record<string, unknown>[];
-  recordsCount: number;
+  recordsCount?: number;
+  batchSize?: number;
   nextCursor?: string | number;
+  nextCursorValue?: string | number;
   hasMore: boolean;
-  extractedAt: string;
+  extractedAt?: string;
   durationMs: number;
   isFixture?: boolean;
 }
 
 export interface HealthCheckResult {
-  connectorId: string;
-  status: 'HEALTHY' | 'DEGRADED' | 'UNHEALTHY' | 'NOT_CONFIGURED';
-  checkedAt: string;
-  connection: ConnectionTestResult;
+  connectorId?: string;
+  status?: 'HEALTHY' | 'DEGRADED' | 'UNHEALTHY' | 'NOT_CONFIGURED';
+  isHealthy?: boolean;
+  statusMessageFa?: string;
+  lastSuccessfulSync?: string;
+  pendingLagRecords?: number;
+  checkedAt?: string;
+  connection?: ConnectionTestResult;
   lastSyncTimestamp?: string;
   reconciliationStatus?: 'RECONCILED' | 'UNRECONCILED' | 'NOT_APPLICABLE';
+  metrics?: Record<string, unknown>;
 }
