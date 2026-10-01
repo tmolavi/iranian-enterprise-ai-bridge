@@ -1,0 +1,14 @@
+{
+  "name": "@ieab/canonical-model",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Vendor-independent Canonical Enterprise Data Model for Iranian Enterprise AI Bridge",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@ieab/shared": "file:../shared"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@ieab/agent-runtime",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Executive Copilot Agent Runtime, Evidence Assembler and Deterministic Tool Orchestrator",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/__tests__/*.test.js",
+    "benchmark": "node dist/benchmark/benchmark-runner.js"
+  },
+  "dependencies": {
+    "@ieab/shared": "file:../shared",
+    "@ieab/canonical-model": "file:../canonical-model",
+    "@ieab/semantic": "file:../semantic",
+    "@ieab/metrics": "file:../metrics",
+    "@ieab/policy-engine": "file:../policy-engine",
+    "@ieab/audit": "file:../audit",
+    "@ieab/ai-gateway": "file:../ai-gateway"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

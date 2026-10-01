@@ -1,0 +1,18 @@
+{
+  "name": "@ieab/ai-gateway",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Multi-Provider Cloud & Local On-Prem AI Model Gateway for Iranian Enterprise Systems",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@ieab/shared": "file:../shared"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

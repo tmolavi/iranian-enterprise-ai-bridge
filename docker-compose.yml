@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: ieab-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ieab_canonical
+      POSTGRES_USER: ieab_user
+      POSTGRES_PASSWORD: ieab_secure_password_2026
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ieab_user -d ieab_canonical"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: ieab-redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: ieab-api
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      NODE_ENV: production
+      DATABASE_URL: postgres://ieab_user:ieab_secure_password_2026@postgres:5432/ieab_canonical
+      REDIS_URL: redis://redis:6379
+      AI_PROVIDER: LOCAL_VLLM
+      AI_MODEL: Qwen/Qwen2.5-72B-Instruct-GPTQ
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  executive-web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: ieab-executive-web
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      WEB_PORT: 3001
+      API_BASE_URL: http://localhost:3000
+
+volumes:
+  pgdata:

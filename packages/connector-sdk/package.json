@@ -1,0 +1,15 @@
+{
+  "name": "@ieab/connector-sdk",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Standard Reusable Connector SDK for Iranian Enterprise Systems",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@ieab/shared": "file:../shared",
+    "@ieab/canonical-model": "file:../canonical-model"
+  }
+}

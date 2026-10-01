@@ -1,0 +1,19 @@
+name: "درخواست اتصال نرم‌افزار جدید (Connector Request)"
+description: "درخواست افزودن کانکتور برای نرم‌افزارهای حسابداری، ERP، CRM یا BPMS ایرانی"
+title: "[Connector Request]: "
+labels: ["connector-request", "enhancement"]
+body:
+  - type: input
+    id: vendor_name
+    attributes:
+      label: نام شرکت تأمین‌کننده و نرم‌افزار
+      placeholder: مثال: پگاه آفتاب، برهان سیستم، تدبیر
+    validations:
+      required: true
+  - type: textarea
+    id: technical_details
+    attributes:
+      label: اطلاعات فنی موجود
+      description: نوع پایگاه داده، وجود وب‌سرویس یا API، ساختار جداول
+    validations:
+      required: false

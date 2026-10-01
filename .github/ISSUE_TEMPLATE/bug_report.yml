@@ -1,0 +1,19 @@
+name: "گزارش باگ یا خطای سیستمی (Bug Report)"
+description: "گزارش خطای محاسباتی، شکست تست‌ها یا مشکل در اتصال به پایگاه داده"
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: شرح خطا
+      description: توضیح دقیق مشکل رخ داده
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: مراحل بازتولید خطا
+      description: ۱. اجرای دستور ... ۲. مشاهده خطا ...
+    validations:
+      required: true

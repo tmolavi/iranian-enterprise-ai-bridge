@@ -1,0 +1,20 @@
+{
+  "name": "@ieab/semantic",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Semantic Metric Layer, KPI Governance and Dimensional Modeling for Iranian Enterprise Systems",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/__tests__/*.test.js"
+  },
+  "dependencies": {
+    "@ieab/shared": "file:../shared",
+    "@ieab/canonical-model": "file:../canonical-model"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

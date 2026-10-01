@@ -1,0 +1,12 @@
+{
+  "name": "@ieab/shared",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Shared utilities, Persian text normalization, Jalali dates, currency formatting and errors for Iranian Enterprise AI Bridge",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/__tests__/*.test.js"
+  }
+}

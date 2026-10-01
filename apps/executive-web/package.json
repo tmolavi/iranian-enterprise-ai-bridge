@@ -1,0 +1,10 @@
+{
+  "name": "@ieab/executive-web",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Executive Web Copilot Interface (RTL Persian / LTR English) for Iranian Enterprise AI Bridge",
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

@@ -1,0 +1,29 @@
+# Iranian Enterprise AI Bridge (IEAB)
+> Open-Source Production-Grade Node.js/TypeScript Platform for ERP/CRM/BPMS -> AI Executive Intelligence
+
+## Overview
+The Iranian Enterprise AI Bridge (IEAB) provides a governed, secure, and evidence-first architecture connecting Iranian enterprise software (System Group/Rahkaran, Chargoon/Didgah, Shomaran/ShAuto, Rayvarz, Sepidar, PayamGostar, Odoo, SQL Server) to modern AI systems without numerical hallucinations or direct risky LLM SQL generation.
+
+## Core Architectural Principle
+Deterministic calculation engines calculate authoritative financial and operational metrics governed by CFOs and COOs. The LLM acts as an intent parser, orchestrator, and natural-language synthesizer that strictly cites deterministic evidence, reconciliation badges, and source record references.
+
+## Key Modules
+- **Canonical Model (`@ieab/canonical-model`):** Vendor-independent domain models across 11 enterprise domains with immutable lineage.
+- **Semantic Layer (`@ieab/semantic`):** CFO-governed metric definitions and KPI contracts.
+- **Metrics Engine (`@ieab/metrics`):** Deterministic KPI calculator, anomaly detector, cash runway forecaster, and subledger-to-GL reconciliation engine.
+- **Security & RBAC (`@ieab/policy-engine`):** Read-only query enforcement, PII masking for Iranian National ID / IBAN, and role-based policies.
+- **Connectors (`connectors/*`):** Standard connectors for Generic MSSQL, Rahkaran, Chargoon, ShAuto, Sepidar, PayamGostar, Odoo, and Excel/CSV drop.
+- **Executive Copilot (`@ieab/agent-runtime`):** Evidence-first conversational engine with 100 Strategic CEO Questions benchmark.
+
+## Documentation Index
+- Architecture Guide: `docs/fa/ARCHITECTURE.md` (Persian), `docs/en/ARCHITECTURE.md` (English)
+- Quickstart: `docs/fa/QUICKSTART.md`, `docs/en/QUICKSTART.md`
+- ERP Benchmark & Market Map: `docs/fa/ERP-BENCHMARK.md`, `docs/en/ERP-BENCHMARK.md`
+- Organization & RACI Guide: `docs/fa/ORGANIZATION-GUIDE.md`, `docs/en/ORGANIZATION-GUIDE.md`
+- Implementation Playbook: `docs/fa/IMPLEMENTATION-PLAYBOOK.md`, `docs/en/IMPLEMENTATION-PLAYBOOK.md`
+- AI Models & Local Hardware Guide: `docs/fa/AI-MODELS.md`, `docs/en/AI-MODELS.md`
+- Security & Threat Model: `docs/fa/SECURITY.md`, `docs/en/SECURITY.md`
+- Connectors Specification: `docs/fa/CONNECTORS.md`, `docs/en/CONNECTORS.md`
+- 100 CEO Questions Catalog: `docs/fa/CEO-QUESTIONS.md`, `docs/en/CEO-QUESTIONS.md`
+- Glossary: `docs/fa/GLOSSARY.md`, `docs/en/GLOSSARY.md`
+- RFP Checklist: `docs/fa/RFP-CHECKLIST.md`, `docs/en/RFP-CHECKLIST.md`

@@ -1,0 +1,23 @@
+{
+  "name": "@ieab/worker",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Background Sync Scheduler, CDC Runner and Anomaly Detector for Iranian Enterprise AI Bridge",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@ieab/shared": "file:../../packages/shared",
+    "@ieab/canonical-model": "file:../../packages/canonical-model",
+    "@ieab/connector-sdk": "file:../../packages/connector-sdk",
+    "@ieab/metrics": "file:../../packages/metrics",
+    "@ieab/connector-generic-mssql": "file:../../connectors/generic-mssql"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

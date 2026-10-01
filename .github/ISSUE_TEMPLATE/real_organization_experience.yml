@@ -1,0 +1,56 @@
+name: "گزارش تجربه واقعی استقرار در سازمان (Real Organization Experience)"
+description: "ثبت تجارب، درس‌آموخته‌ها، چالش‌های مهندسی داده یا نتایج استفاده از پل در سازمان‌ها و کارخانجات ایران"
+title: "[تجربه سازمانی]: "
+labels: ["experience-report", "community"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🏢 ثبت تجربه استقرار در محیط واقعی
+        لطفاً برای کمک به جامعه مهندسی داده و صنایع کشور، تجربه خود را بدون درج اطلاعات محرمانه یا نام افراد به اشتراک بگذارید.
+  - type: input
+    id: org_industry
+    attributes:
+      label: نوع صنعت / سازمان
+      description: مثال: کارخانه فولاد، داروسازی، هلدینگ بازرگانی، شرکت FMCG
+      placeholder: صنایع تولیدی قطعات خودرو
+    validations:
+      required: true
+  - type: input
+    id: erp_system
+    attributes:
+      label: سیستم ERP / CRM مستقر در سازمان
+      description: نام نرم‌افزار، ماژول‌های فعال و نسخه تقریبی
+      placeholder: راهکاران همکاران سیستم (ماژول‌های مالی، بازرگانی و بهای تمام‌شده)
+    validations:
+      required: true
+  - type: dropdown
+    id: extraction_method
+    attributes:
+      label: روش دسترسی و استخراج داده
+      options:
+        - "AlwaysOn Read Replica (پایگاه داده خواندنی)"
+        - "Direct Read-Only SQL (کوئری مستقیم با کاربر محدود)"
+        - "CDC / Change Tracking"
+        - "Web API / REST API رسمی"
+        - "SOAP / Web Services"
+        - "خروجی فایل اکسل و CSV دوره‌ای"
+    validations:
+      required: true
+  - type: dropdown
+    id: ai_deployment
+    attributes:
+      label: مدل استقرار هوش مصنوعی
+      options:
+        - "محلی کامل (Fully On-Premise / vLLM / Ollama)"
+        - "ابری بین‌المللی (OpenAI / Anthropic / Gemini)"
+        - "ترکیبی (Hybrid)"
+    validations:
+      required: true
+  - type: textarea
+    id: challenges_and_lessons
+    attributes:
+      label: چالش‌های کلیدی و درس‌های آموخته‌شده
+      description: چالش‌های Collation فارسی، تبدیل تاریخ شمسی، تطبیق مالی، مقاومت سازمانی، سرعت کوئری‌ها
+    validations:
+      required: true

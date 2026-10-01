@@ -1,0 +1,50 @@
+{
+  "organization": {
+    "nameFa": "شرکت تولیدی فولاد کاوه",
+    "industry": "MANUFACTURING",
+    "erpSystem": "راهکاران همکاران سیستم",
+    "recommendedConnector": "rahkaran-systemgroup"
+  },
+  "architecture": {
+    "accessPath": "READ_REPLICA",
+    "deployment": "FULLY_ON_PREMISE",
+    "aiStrategy": {
+      "modelProvider": "LOCAL_VLLM",
+      "recommendedModel": "Qwen/Qwen2.5-72B-Instruct-GPTQ / DeepSeek-R1-Distill-Qwen-32B",
+      "hardwareEstimate": "2x NVIDIA RTX 3090/4090 (24GB VRAM each)"
+    }
+  },
+  "firstSprintKPIs": [
+    "NET_SALES",
+    "CASH_POSITION",
+    "OVERDUE_RECEIVABLES",
+    "OEE",
+    "PRODUCTION_SCRAP_RATE",
+    "MACHINE_DOWNTIME_HOURS",
+    "INVENTORY_VALUE"
+  ],
+  "securityChecklist": [
+    "ایجاد کاربر SQL با دسترسی صرفاً خواندنی (db_datareader) بدون دسترسی تغییر داده",
+    "فعال‌سازی مسیریابی AlwaysOn Read-Only Routing یا اسنپ‌شات مجزا برای عدم افت سرعت ERP اصلی",
+    "فعال‌سازی ماسک خودکار داده‌های هویتی و پرسنلی (کدملی، شبا، حقوق)",
+    "پیکربندی Kill-Switch و لاگ تغییرناپذیر کلیه پرسش‌ها در دفترکل ممیزی (Audit Ledger)"
+  ],
+  "raciRolesRequired": [
+    {
+      "role": "مدیرعامل / مالک سازمان",
+      "duty": "تعیین اولویت‌های استراتژیک و تأیید مادیات شاخص‌ها"
+    },
+    {
+      "role": "مدیر مالی (CFO)",
+      "duty": "مالکیت فرمول شاخص‌های سود، فروش و تطبیق دفاتر کل با زیرسیستم‌ها"
+    },
+    {
+      "role": "متخصص ERP سازمان",
+      "duty": "توضیح جداول، فیلدها و منطق انبار و فروش به مهندس داده"
+    },
+    {
+      "role": "مهندس داده / هوش مصنوعی",
+      "duty": "استقرار Bridge و اتصال Semantic Layer بدون بازنویسی منطق مالی"
+    }
+  ]
+}

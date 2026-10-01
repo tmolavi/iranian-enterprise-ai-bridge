@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پل هوش مصنوعی سازمانی ایران | Iranian Enterprise AI Bridge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-surface: #111827;
+      --bg-surface-elevated: #1f2937;
+      --border-color: #374151;
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --accent-blue: #3b82f6;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --accent-purple: #8b5cf6;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge-reconciled {
+      background-color: rgba(16, 185, 129, 0.15);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      background: var(--bg-surface-elevated);
+      padding: 0.3rem;
+      border-radius: var(--radius);
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--accent-blue);
+      color: white;
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .grid-kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .kpi-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-title {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .kpi-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .kpi-footer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .chat-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      min-height: 580px;
+      overflow: hidden;
+    }
+
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--border-color);
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .msg-user {
+      align-self: flex-start;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+    }
+
+    .msg-ai {
+      align-self: flex-end;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #e0e7ff;
+    }
+
+    .chat-input-area {
+      padding: 1rem;
+      background: var(--bg-surface-elevated);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .chat-input {
+      flex: 1;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .send-btn {
+      background: var(--accent-blue);
+      border: none;
+      color: white;
+      padding: 0 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .evidence-pane {
+      background: #0d1322;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      overflow-y: auto;
+    }
+
+    .evidence-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .evidence-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .evidence-label {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .evidence-val {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .sample-questions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .sample-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .sample-pill:hover {
+      border-color: var(--accent-blue);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-title">
+      <span>🏛️</span>
+      <span>پل هوش مصنوعی سازمانی ایران</span>
+      <span class="badge-reconciled">تطبیق مالی معتبر ✓</span>
+    </div>
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="switchTab('ask')">پرسش مدیرعامل (Ask)</button>
+      <button class="tab-btn" onclick="switchTab('now')">اکنون (Now)</button>
+      <button class="tab-btn" onclick="switchTab('exceptions')">استثنائات (Exceptions)</button>
+      <button class="tab-btn" onclick="switchTab('why')">تحلیل ریشه‌ای (Why)</button>
+      <button class="tab-btn" onclick="switchTab('next')">آینده و نقدینگی (Next)</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid-kpis">
+      <div class="kpi-card">
+        <div class="kpi-title">
+          <span>فروش خالص ماه جاری</span>
+          <span style="color: var(--accent-emerald);">+۱۴.۲٪</span>
+        </div>
+        <div class="kpi-value">۴.۲۴ میلیارد تومان</div>
+        <div class="kpi-footer">
+          <span>منبع: راهکاران همکاران سیستم</span>
+          <span>تطبیق دفاتر: قطعی</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">
+          <span>موجودی نقد و بانک آزاد</span>
+          <span style="color: var(--accent-amber);">-۸.۵٪</span>
+        </div>
+        <div class="kpi-value">۵.۰۵ میلیارد تومان</div>
+        <div class="kpi-footer">
+          <span>بانک ملی، ملت، صادرات</span>
+          <span>بروزرسانی: برخط</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">
+          <span>مطالبات معوق بالای ۶۰ روز</span>
+          <span style="color: var(--accent-rose);">هشدار تمرکز</span>
+        </div>
+        <div class="kpi-value">۱.۶۴ میلیارد تومان</div>
+        <div class="kpi-footer">
+          <span>DSO: ۴۱ روز</span>
+          <span>۳۵ فاکتور سررسید گذشته</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-title">
+          <span>اثربخشی کلی تجهیزات (OEE)</span>
+          <span style="color: var(--accent-emerald);">۷۵.۰٪</span>
+        </div>
+        <div class="kpi-value">۷۵.۰ درصد</div>
+        <div class="kpi-footer">
+          <span>منبع: سیستم نگهداری شماران</span>
+          <span>نرخ ضایعات: ۲.۴٪</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-section">
+      <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg msg-ai">
+            <strong>سلام جناب آقای دکتر محمدی؛</strong><br>
+            دستیار هوش مصنوعی مدیریت ارشد سازمان آماده پاسخگویی است. کلیه پاسخ‌ها منحصراً از محاسبات قطعی لایه معنایی (Semantic Layer) و بدون هرگونه تخمین یا توهم عددی استخراج می‌شوند.
+            <div class="sample-questions">
+              <span class="sample-pill" onclick="askPreset('فروش این ماه چرا کم شده است؟')">فروش این ماه چرا کم شده؟</span>
+              <span class="sample-pill" onclick="askPreset('موجودی نقد و بانک و تعهدات پایان ماه چقدر است؟')">موجودی نقد و تعهدات پایان ماه؟</span>
+              <span class="sample-pill" onclick="askPreset('کدام مشتریان مطالبات معوق بالای ۶۰ روز دارند؟')">مطالبات معوق کدام مشتریان است؟</span>
+              <span class="sample-pill" onclick="askPreset('اثربخشی تجهیزات (OEE) کارخانه چقدر است؟')">وضعیت OEE و توقفات کارخانه؟</span>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="promptInput" class="chat-input" placeholder="پرسش خود را به زبان فارسی وارد کنید (مثال: وضعیت وصول مطالبات شرکت پارس)..." onkeypress="handleKeyPress(event)">
+          <button class="send-btn" onclick="sendPrompt()">ارسال پرسش</button>
+        </div>
+      </div>
+
+      <div class="evidence-pane">
+        <div class="evidence-title">🔍 شواهد محاسباتی و ممیزی (Evidence)</div>
+        <div class="evidence-item">
+          <div class="evidence-label">سامانه مبدأ داده:</div>
+          <div class="evidence-val" id="evSource">راهکاران همکاران سیستم (SlmInvoice)</div>
+        </div>
+        <div class="evidence-item">
+          <div class="evidence-label">وضعیت تطبیق با اسناد دوبل حسابداری:</div>
+          <div class="evidence-val" style="color: var(--accent-emerald);" id="evRecon">منطبق و ممیزی‌شده (RECONCILED) ✓</div>
+        </div>
+        <div class="evidence-item">
+          <div class="evidence-label">فرمول مصوب CFO:</div>
+          <div class="evidence-val" id="evFormula">مجموع مبالغ فاکتورهای فروش تأییدشده منهای برگشت از فروش</div>
+        </div>
+        <div class="evidence-item">
+          <div class="evidence-label">تاریخ آخرین همگام‌سازی:</div>
+          <div class="evidence-val" id="evDate">۱۴۰۳/۰۷/۱۵ — ۱۰:۴۵</div>
+        </div>
+        <div class="evidence-item">
+          <div class="evidence-label">نمونه کدهای رهگیری اسناد:</div>
+          <div class="evidence-val" style="font-family: monospace; font-size: 0.8rem;" id="evPks">INV-1403-1001, INV-1403-1002</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') sendPrompt();
+    }
+
+    function askPreset(q) {
+      document.getElementById('promptInput').value = q;
+      sendPrompt();
+    }
+
+    async function sendPrompt() {
+      const input = document.getElementById('promptInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const container = document.getElementById('chatMessages');
+      
+      // Add user message
+      const userDiv = document.createElement('div');
+      userDiv.className = 'msg msg-user';
+      userDiv.textContent = text;
+      container.appendChild(userDiv);
+      input.value = '';
+
+      // Call API
+      try {
+        const res = await fetch('http://localhost:3000/api/v1/copilot/ask', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-User-Role': 'CEO',
+            'X-User-Name': 'دکتر محمدی (مدیرعامل)',
+            'X-Org-ID': 'org-kaveh-01'
+          },
+          body: JSON.stringify({ prompt: text })
+        });
+
+        const data = await res.json();
+        const aiDiv = document.createElement('div');
+        aiDiv.className = 'msg msg-ai';
+        
+        let driversHtml = '';
+        if (data.keyDriversFa && data.keyDriversFa.length > 0) {
+          driversHtml = '<ul style="margin: 0.5rem 1.25rem 0 0; font-size: 0.9rem;">' + 
+            data.keyDriversFa.map(d => `<li>${d}</li>`).join('') + '</ul>';
+        }
+
+        aiDiv.innerHTML = `<strong>پاسخ اجرایی:</strong><br>${data.executiveSummaryFa}${driversHtml}`;
+        container.appendChild(aiDiv);
+        container.scrollTop = container.scrollHeight;
+
+        // Update evidence pane
+        if (data.evidence) {
+          document.getElementById('evSource').textContent = data.evidence.sourceSystem || 'ERP_SYSTEM';
+          document.getElementById('evRecon').textContent = data.evidence.reconciliationStatus === 'RECONCILED' ? 'منطبق و ممیزی‌شده (RECONCILED) ✓' : 'در حال پایش / عدم نیاز به تطبیق';
+          document.getElementById('evFormula').textContent = data.evidence.formulaUsedFa || 'محاسبه قطعی لایه معنایی';
+          document.getElementById('evDate').textContent = data.evidence.lastRefreshDate || 'امروز';
+          if (data.evidence.sampleSourcePks) {
+            document.getElementById('evPks').textContent = data.evidence.sampleSourcePks.join(', ');
+          }
+        }
+      } catch (err) {
+        const aiDiv = document.createElement('div');
+        aiDiv.className = 'msg msg-ai';
+        aiDiv.textContent = 'خطا در ارتباط با سرور هوش مصنوعی سازمانی. لطفاً از روشن بودن سرویس API اطمینان حاصل فرمایید.';
+        container.appendChild(aiDiv);
+      }
+    }
+  </script>
+</body>
+</html>

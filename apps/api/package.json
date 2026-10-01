@@ -1,0 +1,35 @@
+{
+  "name": "@ieab/api",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Enterprise API Server & Executive Copilot Gateway for Iranian Enterprise AI Bridge",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@ieab/shared": "file:../../packages/shared",
+    "@ieab/canonical-model": "file:../../packages/canonical-model",
+    "@ieab/connector-sdk": "file:../../packages/connector-sdk",
+    "@ieab/semantic": "file:../../packages/semantic",
+    "@ieab/metrics": "file:../../packages/metrics",
+    "@ieab/policy-engine": "file:../../packages/policy-engine",
+    "@ieab/audit": "file:../../packages/audit",
+    "@ieab/ai-gateway": "file:../../packages/ai-gateway",
+    "@ieab/agent-runtime": "file:../../packages/agent-runtime",
+    "@ieab/connector-generic-mssql": "file:../../connectors/generic-mssql",
+    "@ieab/connector-rahkaran": "file:../../connectors/rahkaran",
+    "@ieab/connector-chargoon": "file:../../connectors/chargoon",
+    "@ieab/connector-shauto": "file:../../connectors/shauto",
+    "@ieab/connector-sepidar": "file:../../connectors/sepidar",
+    "@ieab/connector-payamgostar": "file:../../connectors/payamgostar",
+    "@ieab/connector-odoo": "file:../../connectors/odoo",
+    "@ieab/connector-csv-excel": "file:../../connectors/csv-excel"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

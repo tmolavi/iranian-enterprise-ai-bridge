@@ -1,0 +1,21 @@
+{
+  "name": "@ieab/connector-rahkaran",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Rahkaran (System Group / همکاران سیستم) ERP Connector for Iranian Enterprise AI Bridge",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/__tests__/*.test.js"
+  },
+  "dependencies": {
+    "@ieab/shared": "file:../../packages/shared",
+    "@ieab/canonical-model": "file:../../packages/canonical-model",
+    "@ieab/connector-sdk": "file:../../packages/connector-sdk"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

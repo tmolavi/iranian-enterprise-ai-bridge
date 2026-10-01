@@ -1,0 +1,21 @@
+{
+  "name": "@ieab/admin",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Admin Console & Organization Onboarding Wizard for Iranian Enterprise AI Bridge",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "wizard": "node dist/wizard-cli.js"
+  },
+  "dependencies": {
+    "@ieab/shared": "file:../../packages/shared",
+    "@ieab/semantic": "file:../../packages/semantic",
+    "@ieab/canonical-model": "file:../../packages/canonical-model"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}
