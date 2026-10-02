@@ -7,6 +7,11 @@ import {
 import { EnterpriseDataSet } from '@ieab/metrics';
 import { PersianNormalizer } from '@ieab/shared';
 
+/**
+ * SYNTHETIC TEST DATA — NOT FROM A REAL ORGANIZATION
+ * All company names, invoices, bank accounts, and customer entries below
+ * are purely synthetic demonstration fixtures designed for offline deterministic evaluation.
+ */
 export function createMockEnterpriseDataSet(): EnterpriseDataSet {
   return {
     invoices: [

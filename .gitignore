@@ -25,6 +25,8 @@ geo-aeo-news-engine/
 *.pem
 *.key
 *.cert
+*.id_rsa
+id_rsa*
 
 # Logs & Diagnostics
 *.log
@@ -34,7 +36,12 @@ yarn-error.log*
 
 # Private / Organization data dumps
 extracted_data*/
+private_data*/
+raw_exports*/
 *.xlsx
 *.xls
 *.pdf
 *.csv.bak
+*.dump
+*.sql.gz
+*.sql.bak

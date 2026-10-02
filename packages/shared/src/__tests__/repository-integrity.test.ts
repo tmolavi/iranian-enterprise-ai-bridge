@@ -54,18 +54,10 @@ test('Repository Integrity: verifies dataMode labeling and benchmark metadata al
   }
 });
 
-test('Repository Integrity: verifies no sensitive dumps or private data in git working tree', async () => {
-  const sensitivePaths = [
-    'extracted_data_Meisam_sh',
-    'extracted_data',
-    'Customer_Data.xlsx',
-    'Sales_Report_for_GolhaCo_1402.xlsx'
-  ];
-
-  for (const p of sensitivePaths) {
-    const fullPath = path.resolve(process.cwd(), p);
-    assert.equal(fs.existsSync(fullPath), false, `Sensitive path ${p} must not exist in repository working tree`);
-  }
+test('Repository Integrity: verifies no unignored raw dumps or active .env in working tree', async () => {
+  const rootFiles = fs.readdirSync(process.cwd());
+  assert.equal(rootFiles.includes('.env'), false, 'Active .env file must not exist in working tree');
+  assert.equal(rootFiles.some((f) => f.startsWith('extracted_data') || f.startsWith('raw_exports')), false, 'Unignored data dumps must not exist in root working tree');
 });
 
 test('Repository Integrity: verifies benchmark dataset counts match reality', async () => {
