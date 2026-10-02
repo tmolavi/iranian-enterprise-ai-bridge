@@ -3,7 +3,7 @@
  * Guarantees zero loss of traceability back to source ERP tables/rows.
  */
 
-export type ReconciliationStatus = 'RECONCILED' | 'UNRECONCILED' | 'PENDING' | 'NOT_APPLICABLE';
+export type ReconciliationStatus = 'RECONCILED' | 'UNRECONCILED' | 'PENDING' | 'NOT_VERIFIED' | 'NOT_APPLICABLE';
 
 export interface CanonicalMetadata {
   /** Source ERP/CRM/BPMS system ID (e.g., 'RAHKARAN', 'CHARGOON', 'SHAUTO', 'SEPIDAR', 'GENERIC_MSSQL') */

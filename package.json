@@ -15,7 +15,7 @@
     "build:connectors": "tsc -p connectors/generic-mssql/tsconfig.json && tsc -p connectors/rahkaran/tsconfig.json && tsc -p connectors/chargoon/tsconfig.json && tsc -p connectors/shauto/tsconfig.json && tsc -p connectors/sepidar/tsconfig.json && tsc -p connectors/payamgostar/tsconfig.json && tsc -p connectors/odoo/tsconfig.json && tsc -p connectors/csv-excel/tsconfig.json",
     "build:apps": "tsc -p apps/api/tsconfig.json && tsc -p apps/admin/tsconfig.json && tsc -p apps/worker/tsconfig.json",
     "build": "npm run build:packages && npm run build:connectors && npm run build:apps",
-    "test": "node --test packages/shared/dist/__tests__/*.test.js packages/policy-engine/dist/__tests__/*.test.js packages/metrics/dist/__tests__/*.test.js packages/agent-runtime/dist/__tests__/*.test.js connectors/generic-mssql/dist/__tests__/*.test.js",
+    "test": "node --test packages/shared/dist/__tests__/*.test.js packages/policy-engine/dist/__tests__/*.test.js packages/metrics/dist/__tests__/*.test.js packages/agent-runtime/dist/__tests__/*.test.js connectors/generic-mssql/dist/__tests__/*.test.js connectors/sepidar/dist/__tests__/*.test.js",
     "benchmark": "node packages/agent-runtime/dist/benchmark/benchmark-runner.js",
     "wizard": "node apps/admin/dist/wizard-cli.js",
     "start:api": "node apps/api/dist/index.js",

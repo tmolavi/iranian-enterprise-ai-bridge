@@ -35,7 +35,7 @@ export class ConnectorTestHarness {
     const t1 = Date.now();
     try {
       const conn = await connector.testConnection();
-      if (!conn.success && (conn.status === 'NOT_CONFIGURED' || conn.status === 'REQUIRES_VENDOR_ACCESS')) {
+      if (!conn.success && (conn.status === 'NOT_CONFIGURED' || conn.status === 'REQUIRES_VENDOR_ACCESS' || conn.status === 'NOT_VERIFIED' || conn.status === 'DRIVER_NOT_AVAILABLE')) {
         const fixtureConn = connector.testFixtureConnection();
         assert.ok(fixtureConn.success, 'Fixture connection test should return success');
         assert.ok(fixtureConn.isReadOnlyConfirmed, 'Read-only safety must be confirmed');

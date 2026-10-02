@@ -1,6 +1,7 @@
 /**
- * 100 Strategic CEO Benchmark Questions Catalog for Iranian Enterprises.
- * Grounded directly in Iranian ERP realities and executive decision criteria.
+ * Strategic CEO Benchmark Dataset for Iranian Enterprises.
+ * - Full Catalog: 100 Documented Questions (docs/fa/CEO-QUESTIONS.md)
+ * - Executable Benchmark Cases: 15 Sample Cases verified with synthetic enterprise fixtures.
  */
 
 export interface CEOBenchmarkCase {
@@ -16,8 +17,10 @@ export interface CEOBenchmarkCase {
   failureConditionsFa: string[];
 }
 
-export const CEO_BENCHMARK_100: CEOBenchmarkCase[] = [
-  // 1. Finance & Profitability (1-10)
+export const CEO_QUESTION_CATALOG_TOTAL_COUNT = 100;
+
+export const CEO_EXECUTABLE_BENCHMARK_CASES: CEOBenchmarkCase[] = [
+  // 1. Finance & Profitability (1-5)
   {
     id: 'CEO_Q_001',
     category: 'FINANCE',
@@ -79,7 +82,7 @@ export const CEO_BENCHMARK_100: CEOBenchmarkCase[] = [
     failureConditionsFa: ['عدم لحاظ اثر تورم و مقادیر مقداری فروش']
   },
 
-  // 2. Treasury & Cash Flow (11-20)
+  // 2. Treasury & Cash Flow (11-13)
   {
     id: 'CEO_Q_011',
     category: 'TREASURY',
@@ -117,7 +120,7 @@ export const CEO_BENCHMARK_100: CEOBenchmarkCase[] = [
     failureConditionsFa: ['عدم استخراج سقف اعتبار ثبت‌شده در سیستم فروش']
   },
 
-  // 3. Manufacturing, OEE & Shop Floor (21-35)
+  // 3. Manufacturing, OEE & Shop Floor (21-23)
   {
     id: 'CEO_Q_021',
     category: 'PRODUCTION',
@@ -155,7 +158,7 @@ export const CEO_BENCHMARK_100: CEOBenchmarkCase[] = [
     failureConditionsFa: ['شمارش محصولات نیمه‌ساخته به عنوان محصول نهایی قابل تحویل']
   },
 
-  // 4. Inventory & Supply Chain (36-50)
+  // 4. Inventory & Supply Chain (36-37)
   {
     id: 'CEO_Q_036',
     category: 'INVENTORY',
@@ -181,7 +184,7 @@ export const CEO_BENCHMARK_100: CEOBenchmarkCase[] = [
     failureConditionsFa: ['لحاظ نکردن سفارشات خرید صادرشده در راه']
   },
 
-  // 5. Governance, Audit & Exceptions (51-100 summary representative cases)
+  // 5. Governance, Audit & Risk (51-52)
   {
     id: 'CEO_Q_051',
     category: 'GOVERNANCE',
@@ -207,3 +210,8 @@ export const CEO_BENCHMARK_100: CEOBenchmarkCase[] = [
     failureConditionsFa: ['عدم استخراج سررسید ضمانت‌نامه بانکی']
   }
 ];
+
+export const CEO_EXECUTABLE_BENCHMARK_COUNT = 15;
+
+/** Backward compatibility alias */
+export const CEO_BENCHMARK_100 = CEO_EXECUTABLE_BENCHMARK_CASES;

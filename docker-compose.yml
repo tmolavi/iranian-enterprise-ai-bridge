@@ -1,20 +1,25 @@
 version: '3.8'
 
+# IEAB Docker Compose Stack
+# Note: PostgreSQL (pgvector) and Redis are optional stateful storage backends.
+# By default in v0.1, IEAB runs offline deterministic evaluation and fixture execution
+# without requiring live external databases.
+
 services:
   postgres:
     image: pgvector/pgvector:pg16
     container_name: ieab-postgres
     restart: always
     environment:
-      POSTGRES_DB: ieab_canonical
-      POSTGRES_USER: ieab_user
-      POSTGRES_PASSWORD: ieab_secure_password_2026
+      POSTGRES_DB: ${POSTGRES_DB:-ieab_canonical}
+      POSTGRES_USER: ${POSTGRES_USER:-ieab_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ieab_dev_password_only}
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ieab_user -d ieab_canonical"]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-ieab_user} -d $${POSTGRES_DB:-ieab_canonical}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -37,7 +42,7 @@ services:
     environment:
       PORT: 3000
       NODE_ENV: production
-      DATABASE_URL: postgres://ieab_user:ieab_secure_password_2026@postgres:5432/ieab_canonical
+      DATABASE_URL: postgres://${POSTGRES_USER:-ieab_user}:${POSTGRES_PASSWORD:-ieab_dev_password_only}@postgres:5432/${POSTGRES_DB:-ieab_canonical}
       REDIS_URL: redis://redis:6379
       AI_PROVIDER: LOCAL_VLLM
       AI_MODEL: Qwen/Qwen2.5-72B-Instruct-GPTQ
@@ -55,7 +60,8 @@ services:
       - "3001:3001"
     environment:
       WEB_PORT: 3001
-      API_BASE_URL: http://localhost:3000
+      # Browser client endpoint accessing the API server
+      API_BASE_URL: ${API_BASE_URL:-http://localhost:3000}
 
 volumes:
   pgdata:

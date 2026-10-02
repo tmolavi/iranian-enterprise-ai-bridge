@@ -1,5 +1,9 @@
 import { ExecutiveCopilot } from '../runtime/executive-copilot.js';
-import { CEO_BENCHMARK_100 } from './benchmark-dataset.js';
+import { 
+  CEO_EXECUTABLE_BENCHMARK_CASES, 
+  CEO_QUESTION_CATALOG_TOTAL_COUNT,
+  CEO_EXECUTABLE_BENCHMARK_COUNT 
+} from './benchmark-dataset.js';
 import { EnterpriseDataSet } from '@ieab/metrics';
 import { PersianNormalizer } from '@ieab/shared';
 
@@ -364,8 +368,8 @@ export async function runCEOBenchmark(): Promise<void> {
   let passed = 0;
   let failed = 0;
 
-  for (let i = 0; i < CEO_BENCHMARK_100.length; i++) {
-    const q = CEO_BENCHMARK_100[i];
+  for (let i = 0; i < CEO_EXECUTABLE_BENCHMARK_CASES.length; i++) {
+    const q = CEO_EXECUTABLE_BENCHMARK_CASES[i];
     const t0 = Date.now();
     try {
       const answer = await copilot.ask(userCtx, q.questionFa, dataset, `bench-${q.id}`);
@@ -393,9 +397,9 @@ export async function runCEOBenchmark(): Promise<void> {
   }
 
   console.log('======================================================================');
-  console.log(`📊 EXECUTABLE BENCHMARK RESULTS: Passed: ${passed} | Failed: ${failed} | Executable Cases: ${CEO_BENCHMARK_100.length}`);
-  console.log(`📑 Total Documented Catalog: 100 Strategic Questions (docs/fa/CEO-QUESTIONS.md)`);
-  console.log(`🎯 Deterministic Evidence Validation Rate: ${((passed / CEO_BENCHMARK_100.length) * 100).toFixed(1)}%`);
+  console.log(`📊 EXECUTABLE BENCHMARK RESULTS: Passed: ${passed} | Failed: ${failed} | Executable Cases: ${CEO_EXECUTABLE_BENCHMARK_CASES.length}`);
+  console.log(`📑 Total Documented Catalog: ${CEO_QUESTION_CATALOG_TOTAL_COUNT} Strategic Questions (docs/fa/CEO-QUESTIONS.md)`);
+  console.log(`🎯 Deterministic Evidence Validation Rate: ${((passed / CEO_EXECUTABLE_BENCHMARK_CASES.length) * 100).toFixed(1)}%`);
   console.log(`⚡ Execution Mode: In-Memory Deterministic Rule-Based Tool Planner (Offline Fixture)`);
   console.log('======================================================================\n');
 }

@@ -41,3 +41,19 @@ test('GenericMSSQLConnector: normalizes Persian/Arabic text and parses Shamsi da
   assert.equal(canonical[0].metadata.sourceSystem, 'GENERIC_MSSQL');
   assert.ok(canonical[0].metadata.checksum.length > 10);
 });
+
+test('GenericMSSQLConnector: returns honest status for unverified live connection', async () => {
+  const unconfigured = new GenericMSSQLConnector();
+  const unconfiguredRes = await unconfigured.testConnection();
+  assert.equal(unconfiguredRes.success, false);
+  assert.equal(unconfiguredRes.status, 'NOT_CONFIGURED');
+
+  const configured = new GenericMSSQLConnector({
+    host: '192.168.1.100',
+    database: 'SampleDB',
+    username: 'sa'
+  });
+  const configuredRes = await configured.testConnection();
+  assert.equal(configuredRes.success, false);
+  assert.equal(configuredRes.status, 'NOT_VERIFIED');
+});

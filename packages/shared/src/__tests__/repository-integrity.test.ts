@@ -50,6 +50,7 @@ test('Repository Integrity: verifies dataMode labeling and benchmark metadata al
     const readmeContent = fs.readFileSync(readmePath, 'utf8');
     assert.ok(readmeContent.includes('CEO-QUESTIONS.md'), 'README must link to CEO-QUESTIONS.md catalog');
     assert.equal(readmeContent.includes('100% Pass-brightgreen'), false, 'README badge must not claim 100% pass for the whole 100 questions dataset');
+    assert.ok(readmeContent.includes('15 سناریوی اجرایی') || readmeContent.includes('15 Executable'), 'README must honestly declare executable cases');
   }
 });
 
@@ -64,5 +65,14 @@ test('Repository Integrity: verifies no sensitive dumps or private data in git w
   for (const p of sensitivePaths) {
     const fullPath = path.resolve(process.cwd(), p);
     assert.equal(fs.existsSync(fullPath), false, `Sensitive path ${p} must not exist in repository working tree`);
+  }
+});
+
+test('Repository Integrity: verifies benchmark dataset counts match reality', async () => {
+  const datasetPath = path.resolve(process.cwd(), 'packages', 'agent-runtime', 'src', 'benchmark', 'benchmark-dataset.ts');
+  if (fs.existsSync(datasetPath)) {
+    const content = fs.readFileSync(datasetPath, 'utf8');
+    assert.ok(content.includes('CEO_QUESTION_CATALOG_TOTAL_COUNT = 100'), 'Catalog must define 100 questions');
+    assert.ok(content.includes('CEO_EXECUTABLE_BENCHMARK_COUNT = 15'), 'Executable count must be 15');
   }
 });

@@ -41,17 +41,17 @@ export class GenericMSSQLConnector extends BaseConnector {
 
     const isReadOnly = this.config.readOnlyIntent !== false;
 
-    // In a live environment with network access, real TCP/SQL ping is performed.
-    // When offline or in synthetic test environments, reports status honestly without fake server version.
+    // In v0.1 without active live network database verification, report NOT_VERIFIED honestly.
     return {
-      success: true,
-      status: 'CONNECTED',
+      success: false,
+      status: 'NOT_VERIFIED',
       latencyMs: Date.now() - t0,
       isReadOnlyConfirmed: isReadOnly,
+      error: 'Live SQL Server driver validation is pending network execution in v0.1. Use testFixtureConnection() for synthetic fixture verification.',
       details: {
         host: this.config.host,
         database: this.config.database,
-        isolationLevel: 'READ_COMMITTED_SNAPSHOT'
+        status: 'NOT_VERIFIED'
       }
     };
   }
@@ -156,12 +156,12 @@ export class GenericMSSQLConnector extends BaseConnector {
     const connTest = await this.testConnection();
     return {
       connectorId: this.manifest.connectorId,
-      status: connTest.success ? 'HEALTHY' : 'NOT_CONFIGURED',
+      status: connTest.success ? 'HEALTHY' : (connTest.status === 'NOT_VERIFIED' ? 'NOT_VERIFIED' : 'NOT_CONFIGURED'),
       isHealthy: connTest.success,
       checkedAt: new Date().toISOString(),
       connection: connTest,
       lastSyncTimestamp: new Date().toISOString(),
-      reconciliationStatus: 'RECONCILED'
+      reconciliationStatus: 'NOT_VERIFIED'
     };
   }
 
@@ -205,7 +205,7 @@ export class GenericMSSQLConnector extends BaseConnector {
             connectorVersion: this.manifest.versionsTested[0],
             checksum,
             isDeleted: false,
-            reconciliationStatus: 'RECONCILED'
+            reconciliationStatus: 'NOT_VERIFIED'
           }
         };
 
@@ -230,7 +230,7 @@ export class GenericMSSQLConnector extends BaseConnector {
             connectorVersion: this.manifest.versionsTested[0],
             checksum,
             isDeleted: false,
-            reconciliationStatus: 'RECONCILED'
+            reconciliationStatus: 'NOT_VERIFIED'
           }
         };
 

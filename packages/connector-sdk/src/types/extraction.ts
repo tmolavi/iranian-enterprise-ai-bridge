@@ -15,6 +15,8 @@ export interface ConnectionConfig {
 export type ConnectionStatus =
   | 'CONNECTED'
   | 'NOT_CONFIGURED'
+  | 'NOT_VERIFIED'
+  | 'DRIVER_NOT_AVAILABLE'
   | 'CONNECTION_FAILED'
   | 'FIXTURE_MODE'
   | 'REQUIRES_VENDOR_ACCESS';
@@ -82,7 +84,7 @@ export interface ExtractionBatchResult {
 
 export interface HealthCheckResult {
   connectorId?: string;
-  status?: 'HEALTHY' | 'DEGRADED' | 'UNHEALTHY' | 'NOT_CONFIGURED';
+  status?: 'HEALTHY' | 'DEGRADED' | 'UNHEALTHY' | 'NOT_CONFIGURED' | 'NOT_VERIFIED' | 'DRIVER_NOT_AVAILABLE';
   isHealthy?: boolean;
   statusMessageFa?: string;
   lastSuccessfulSync?: string;
@@ -90,6 +92,6 @@ export interface HealthCheckResult {
   checkedAt?: string;
   connection?: ConnectionTestResult;
   lastSyncTimestamp?: string;
-  reconciliationStatus?: 'RECONCILED' | 'UNRECONCILED' | 'NOT_APPLICABLE';
+  reconciliationStatus?: 'RECONCILED' | 'UNRECONCILED' | 'NOT_APPLICABLE' | 'NOT_VERIFIED';
   metrics?: Record<string, unknown>;
 }

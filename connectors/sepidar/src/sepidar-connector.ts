@@ -30,7 +30,7 @@ export class SepidarConnector extends BaseConnector {
         status: 'NOT_CONFIGURED',
         latencyMs: 0,
         isReadOnlyConfirmed: false,
-        error: 'Sepidar database credentials (host, database, username) are not configured. Live Sepidar instance required for live testing.',
+        error: 'Sepidar database credentials (host, database, username) are not configured.',
         details: {
           vendor: 'System Group',
           product: 'Sepidar',
@@ -39,15 +39,18 @@ export class SepidarConnector extends BaseConnector {
       };
     }
 
+    // In v0.1 without active live network database connection, report NOT_VERIFIED honestly.
     return {
-      success: true,
-      status: 'CONNECTED',
+      success: false,
+      status: 'NOT_VERIFIED',
       latencyMs: Date.now() - t0,
       isReadOnlyConfirmed: this.config.readOnlyIntent !== false,
+      error: 'Live Sepidar SQL Server driver verification pending in v0.1. Use testFixtureConnection() for synthetic fixture testing.',
       details: {
         vendor: 'System Group',
         product: 'Sepidar',
-        database: this.config.database
+        database: this.config.database,
+        status: 'NOT_VERIFIED'
       }
     };
   }
@@ -93,9 +96,12 @@ export class SepidarConnector extends BaseConnector {
     return {
       entity: options.entity,
       records: mockInvoices,
+      recordsCount: mockInvoices.length,
       batchSize: mockInvoices.length,
       hasMore: false,
-      durationMs: Date.now() - t0
+      extractedAt: new Date().toISOString(),
+      durationMs: Date.now() - t0,
+      isFixture: true
     };
   }
 
@@ -104,9 +110,16 @@ export class SepidarConnector extends BaseConnector {
   }
 
   public async healthCheck(): Promise<HealthCheckResult> {
+    const conn = await this.testConnection();
     return {
-      isHealthy: true,
-      statusMessageFa: 'اتصال به پایگاه داده سپیدار همکاران سیستم برقرار است.'
+      connectorId: this.manifest.connectorId,
+      status: conn.status === 'CONNECTED' ? 'HEALTHY' : (conn.status as any),
+      isHealthy: conn.success,
+      statusMessageFa: conn.success
+        ? 'اتصال به پایگاه داده سپیدار همکاران سیستم برقرار است.'
+        : 'اتصال زنده به سپیدار اعتبارسنجی نشده است (وضعیت: NOT_VERIFIED).',
+      connection: conn,
+      reconciliationStatus: 'NOT_VERIFIED'
     };
   }
 
@@ -146,7 +159,7 @@ export class SepidarConnector extends BaseConnector {
           connectorVersion: '1.0.0',
           checksum: computeChecksum(raw),
           isDeleted: false,
-          reconciliationStatus: 'RECONCILED'
+          reconciliationStatus: 'NOT_VERIFIED'
         }
       };
       list.push(entity);
